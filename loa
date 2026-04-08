@@ -27,6 +27,26 @@ overlay.BackgroundColor3 = Color3.fromRGB(20, 30, 20)
 overlay.BackgroundTransparency = 0.4
 overlay.Parent = bg
 
+-- Loading Screen
+local loadingFrame = Instance.new("Frame")
+loadingFrame.Size = UDim2.new(1, 0, 1, 0)
+loadingFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+loadingFrame.Parent = gui
+
+local loadingText = Instance.new("TextLabel")
+loadingText.Size = UDim2.new(1, 0, 0.2, 0)
+loadingText.Position = UDim2.new(0, 0, 0.4, 0)
+loadingText.BackgroundTransparency = 1
+loadingText.Text = "Loading Script..."
+loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadingText.TextScaled = true
+loadingText.Font = Enum.Font.GothamBold
+loadingText.Parent = loadingFrame
+
+-- Wait 10 seconds
+task.wait(10)
+loadingFrame:Destroy()
+
 -- Main Frame
 local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0.4, 0, 0.5, 0)
@@ -58,10 +78,11 @@ instructions.BackgroundTransparency = 1
 instructions.TextWrapped = true
 instructions.TextYAlignment = Enum.TextYAlignment.Top
 instructions.Text =
-	"1. Click button below\n" ..
-	"2. Paste link in browser\n" ..
-	"3. Join the server\n" ..
-	"4. Enjoy 🌿"
+	"To get the coded server read below\n\n" ..
+	"1. Click Get Coded Server\n" ..
+	"2. Put coded server into chrome\n" ..
+	"3. Click play\n" ..
+	"4. Enjoy your script🔥"
 instructions.TextColor3 = Color3.fromRGB(60, 90, 60)
 instructions.TextScaled = true
 instructions.Font = Enum.Font.Gotham
